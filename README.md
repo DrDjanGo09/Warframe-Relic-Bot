@@ -91,14 +91,13 @@ Ensure your bot has these Discord permissions:
 ```
 warframe-relic-bot/
 ├── bot.py                          # Main bot file
-├── .env                           # Environment variables (DO NOT COMMIT)
 ├── .env.example                   # Example environment file
 ├── .gitignore                     # Git ignore file
 ├── requirements.txt               # Python dependencies
 ├── README.md                      # This file
-├── user_relics/                   # User relic data storage
-├── comparison_reports/            # Generated reports
-├── temp_files/                    # Temporary files
+├── user_relics/                   # User relic data storage (User relic info will be stored here)
+├── comparison_reports/            # Generated reports (Comparison report will be stored here)
+├── temp_files/                    # Temporary files (Relic info of someone you checked)
 ├── relic_data.json               # Warframe relic database
 ├── platinum_price_cache.json     # Price cache file
 ├── user_tokens_encrypted.json    # Encrypted user tokens
