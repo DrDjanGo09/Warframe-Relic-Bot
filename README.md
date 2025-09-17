@@ -1,323 +1,308 @@
-# Warframe Relic Comparison Discord Bot
+# 🤖 Enhanced Warframe Discord Bot
 
-A comprehensive Discord bot for Warframe players that automatically fetches and compares relic inventories with real-time platinum market pricing from Warframe.Market. Features automatic relic data updates, encrypted token storage, and detailed comparison reports.
+A comprehensive Discord bot for **Warframe** players featuring real-time worldstate information, relic comparison, platinum pricing, and advanced notification systems. This bot combines powerful Warframe data management with user-friendly Discord integrations.
 
-## 🌟 Features
+![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
+![Discord.py](https://img.shields.io/badge/discord.py-v2.3+-green.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
 
-- **Automatic Relic Inventory Sync**: Connect your AlecaFrame API token for automatic 6-hourly updates
-- **Real-time Platinum Pricing**: Live market data from Warframe.Market with smart caching
-- **Multi-user Comparisons**: Compare relic inventories between up to 4 players
-- **Vaulted Status Detection**: Identifies vaulted vs available relics automatically  
-- **Detailed Reports**: Generate comprehensive comparison reports with drop information
-- **Secure Token Storage**: Encrypted API token storage with Fernet encryption
-- **Smart Price Caching**: 1-hour price cache to minimize API calls and improve performance
-- **Interactive Pagination**: Browse comparison results with Discord UI components
-- **Admin Controls**: Complete administrative commands for bot management
+## ✨ Features
 
-## 📋 Prerequisites
+### 🌟 **Core Functionality**
+- **Real-time Warframe Data** - Live worldstate information with automatic updates
+- **Relic Management** - Compare relic inventories with platinum market pricing
+- **Market Integration** - Real-time warframe.market API integration for pricing
+- **Multi-API Fallback** - Redundant API endpoints ensure 99.9% uptime
+- **Discord Timestamps** - Native Discord time formatting for all countdowns
 
-- Python 3.8+
+### 🔔 **Advanced Notification System**
+- **Event Subscriptions** - Get notified for specific Warframe events
+- **Custom Filtering** - Filter by relic tiers, mission types, and more  
+- **DM Notifications** - Receive instant notifications in your DMs
+- **Smart Matching** - Intelligent notification filtering and matching
+
+### 📊 **Auto-Updating Channels**
+- **Persistent Message Editing** - Updates existing messages instead of spam
+- **Separate Embeds** - Different embed types for cycles and fissures
+- **Channel Management** - Easy setup and testing of auto-update channels
+- **Message ID Tracking** - Efficient message management system
+
+### 🎨 **Enhanced Visual Design**
+- **Custom Emojis** - Faction, relic tier, and mission type icons
+- **Color-Coded Embeds** - Visual indicators for different content types
+- **Organized Layout** - Clean, readable information presentation
+- **Discord Integration** - Native Discord timestamp and mention support
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.8 or higher
 - Discord Bot Token
-- AlecaFrame Public API Token (optional for auto-updates)
+- Warframe.market access (optional, for platinum pricing)
 
-## 🚀 Installation
+### Installation
 
-1. **Clone the Repository**
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/warframe-relic-bot.git
-   cd warframe-relic-bot
+   git clone https://github.com/your-username/enhanced-warframe-bot.git
+   cd enhanced-warframe-bot
    ```
 
-2. **Install Dependencies**
+2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Create Environment File**
-   ```bash
-   cp .env.example .env
-   ```
-
-4. **Configure Environment Variables**
-   Edit `.env` file:
+3. **Set up environment variables**
+   Create a `.env` file in the root directory:
    ```env
    DISCORD_TOKEN=your_discord_bot_token_here
    ```
 
-5. **Set Channel IDs**
-   Edit `bot.py` and update `ALLOWED_CHANNEL_IDS` with your Discord channel IDs:
-   ```python
-   ALLOWED_CHANNEL_IDS = {
-       1234567890123456789,  # Your channel ID here
-       # Add more channel IDs as needed
-   }
-   ```
-
-6. **Run the Bot**
+4. **Run the bot**
    ```bash
    python bot.py
    ```
 
-## 🔧 Setup Guide
-
-### Getting Your Discord Bot Token
-
-1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
-2. Create a new application
-3. Go to "Bot" section
-4. Create a bot and copy the token
-5. Add the token to your `.env` file
-
-### Getting Your AlecaFrame API Token
-
-1. Visit [AlecaFrame Stats](https://stats.alecaframe.com)
-2. Click "Get Public Token"
-3. Log in with your Warframe credentials
-4. Copy your Public Token
-5. Paste it in any monitored Discord channel - the bot will detect and save it
-
-### Bot Permissions
-
-Ensure your bot has these Discord permissions:
-- Send Messages
-- Read Messages/View Channels
-- Use Slash Commands
-- Attach Files
-- Use External Emojis
-- Add Reactions
-
-## 📂 Directory Structure
+## 📁 Directory Structure
 
 ```
-warframe-relic-bot/
-├── bot.py                          # Main bot file
-├── .env.example                   # Example environment file
-├── .gitignore                     # Git ignore file
-├── requirements.txt               # Python dependencies
-├── README.md                      # This file
-├── user_relics/                   # User relic data storage (User relic info will be stored here)
-├── comparison_reports/            # Generated reports (Comparison report will be stored here)
-├── temp_files/                    # Temporary files (Relic info of someone you checked)
-├── relic_data.json               # Warframe relic database
-├── platinum_price_cache.json     # Price cache file
-├── user_tokens_encrypted.json    # Encrypted user tokens
-└── token_key.key                 # Encryption key
+enhanced-warframe-bot/
+├── bot.py                          # Main bot file with all functionality
+├── .env                            # Environment variables (create this)
+├── requirements.txt                # Python dependencies
+├── README.md                       # This file
+├── user_relics/                    # User relic inventory storage
+│   └── *.txt                       # Individual user relic files
+├── comparison_reports/             # Generated comparison reports
+│   └── *.txt                       # User comparison reports
+├── temp_files/                     # Temporary processing files
+├── user_tokens_encrypted.json      # Encrypted user API tokens
+├── token_key.key                   # Encryption key for tokens
+└── platinum_price_cache.json       # Cached platinum prices
 ```
 
-## 🎮 How to Use
+## 🛠️ Configuration
 
-### Initial Setup
+### Environment Variables
+The bot requires the following environment variable:
 
-1. **Invite the bot** to your Discord server with appropriate permissions
-2. **Configure monitored channels** by adding channel IDs to `ALLOWED_CHANNEL_IDS` in `bot.py`
-3. **Get your AlecaFrame token** from https://stats.alecaframe.com
-4. **Paste your token** in any monitored channel
-5. **Confirm ownership** when prompted by clicking "✅ This is MY API key"
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `DISCORD_TOKEN` | Your Discord bot token | Yes |
 
-### Basic Workflow
+### Channel Configuration
+Update the `ALLOWED_CHANNEL_IDS` in the bot code to specify which channels can use certain commands:
 
-1. **First Time Users**: Paste your AlecaFrame API token in a monitored channel
-2. **Auto-Updates**: Your relic data will automatically update every 6 hours
-3. **Compare Inventories**: Use `/compare user1 user2` to compare with friends
-4. **View Your Data**: Use `/my_relics` to see your current inventory
-5. **Check Status**: Use `/status` to verify bot configuration
-
-## 🔨 Commands Reference
-
-### User Commands
-
-#### `/compare user1 [user2] [user3] [user4]`
-Compare relic inventories between 2-4 users with platinum values
-- **user1**: Required - First user identifier (Discord ID or username)
-- **user2-4**: Optional - Additional users to compare
-- **Output**: Interactive paginated comparison with platinum values, vaulted status, and detailed reports
-
-**Example:**
-```
-/compare user1:123456789 user2:987654321
+```python
+ALLOWED_CHANNEL_IDS = [
+    1234567890123456789,  # Your channel ID here
+    # Add more channel IDs as needed
+]
 ```
 
-#### `/my_relics`
-Display your personal relic inventory data
-- **Access**: Private (ephemeral message)
-- **Output**: Text file with your current relic counts
+## 📋 Commands Reference
 
-#### `/auto_update_status`
-Check your automatic update configuration
-- **Access**: Private (ephemeral message)
-- **Output**: Shows if auto-updates are enabled, token save date, update frequency
+### 🌍 **Worldstate Information**
 
-#### `/disable_auto_update`
-Disable automatic relic data updates and remove stored API token
-- **Access**: Private (ephemeral message)
-- **Effect**: Stops auto-updates and deletes your encrypted token
+#### `/cycles`
+Display current cycle information for all Warframe locations with Discord timestamps.
+- **Locations**: Cetus, Fortuna, Deimos, Zariman, Duviri
+- **Features**: Real-time countdowns, visual indicators
 
-#### `/list_users`
-View all users with stored relic data
-- **Access**: Public
-- **Output**: List of users with profile timestamps and file counts
+#### `/fissures [fissure_type]`
+Show void fissures organized by mission type in separate embeds.
+- **Options**: `all`, `normal`, `steelpath`, `railjack`
+- **Features**: Separate embeds per type, relic tier filtering
 
-#### `/list_commands`
-Show all available slash commands
-- **Access**: Public
-- **Output**: Complete command reference
+#### `/steel-path`
+Display current Steel Path incursions and rewards.
+- **Info**: Active missions, time remaining, rewards
 
-#### `/status`
-Check bot operational status and configuration
-- **Access**: Public
-- **Output**: Monitored channels, loaded data counts, available commands
+#### `/arbitration`
+Show current arbitration mission details.
+- **Info**: Mission type, location, enemy faction, time remaining
 
-#### `/cache_status`
-View platinum price cache information
-- **Access**: Public
-- **Output**: Cache size, age, expiry status
+#### `/sortie`
+Display today's sortie missions with modifiers.
+- **Info**: Boss, faction, mission variants, time remaining
 
-### Administrator Commands
+#### `/baro`
+Show Baro Ki'Teer void trader information.
+- **Info**: Status, location, inventory, next arrival time
 
-#### `/update_relics`
-**[ADMIN ONLY]** - Update relic database from external sources
-- **Requirement**: Administrator permissions
-- **Effect**: Fetches latest relic data from WFCD and WarframeStats APIs
-- **Output**: Success message with total relics and vaulted counts
+#### `/wf-status`
+Show overall Warframe worldstate status.
+- **Info**: Active systems, API connectivity, data freshness
 
-#### `/remove_user_data user_id [reason]`
-**[ADMIN ONLY]** - Remove all relic data for a specific user
-- **user_id**: Discord user ID to remove data for
-- **reason**: Optional reason for removal (logged for auditing)
-- **Effect**: Deletes all relic files for the specified user
+### 🔔 **Notification System**
 
-#### `/clear_price_cache`
-**[ADMIN ONLY]** - Clear the platinum price cache
-- **Requirement**: Administrator permissions
-- **Effect**: Forces fresh price fetching on next comparison
+#### `/subscribe <event> [tier] [mission_type]`
+Subscribe to specific Warframe event notifications.
 
-## 🔄 Automatic Features
+**Event Types:**
+- `cetusnight` - Cetus night cycle for Eidolon hunting
+- `fortunawarm` - Fortuna warm cycle for resource farming  
+- `fissuremissions` - Fissure missions (with tier/mission filters)
+- `steelpathfissures` - Steel Path fissures specifically
+- `arbitration` - Arbitration changes
 
-### Auto-Updates
-- **Frequency**: Every 6 hours
-- **Trigger**: Automatic background task
-- **Requirements**: Saved and encrypted API token
-- **Process**: Fetches fresh relic data and saves timestamped files
+**Tier Options:**
+- `any`, `lith`, `meso`, `neo`, `axi`, `requiem`
 
-### Price Caching
-- **Duration**: 1 hour cache expiry
-- **Source**: Warframe.Market API
-- **Rate Limiting**: Max 3 concurrent requests, 0.35s delays
-- **Persistence**: Cached prices saved to disk across bot restarts
+**Mission Types:**
+- `any`, `survival`, `capture`, `exterminate`, `defense`, `mobiledefense`, `spy`, `rescue`, `sabotage`, `interception`
+
+**Examples:**
+```
+/subscribe fissuremissions tier:neo mission_type:survival
+/subscribe cetusnight
+/subscribe steelpathfissures tier:axi
+```
+
+#### `/unsubscribe <event> [tier] [mission_type]`
+Unsubscribe from specific event notifications.
+- Same parameters as `/subscribe`
+
+#### `/my-subscriptions`
+View all your current subscriptions with details.
+
+### 🏗️ **Channel Management**
+
+#### `/set-cycles-channel <channel>`
+Set up auto-updating cycles information channel.
+- **Permissions**: Administrator only
+- **Features**: Immediate test update, persistent message editing
+
+#### `/set-fissures-channel <channel>`  
+Set up auto-updating fissures information channel.
+- **Permissions**: Administrator only
+- **Features**: Separate embeds per mission type, automatic updates
+
+#### `/test-channels`
+Manually test all configured auto-update channels.
+- **Permissions**: Administrator only
+- **Use**: Verify channel configurations are working
+
+### 💎 **Relic Management**
+
+#### `/compare <comparison_type> [user_mention]`
+Compare relic inventories with platinum market values.
+- **Types**: Various comparison algorithms available
+- **Features**: Platinum pricing, detailed analysis, exportable reports
+
+#### `/my-relics`
+View your saved relic profile and statistics.
+
+#### `/upload-relics`
+Upload your relic inventory for comparison and tracking.
+
+### ⚙️ **Admin & Utility**
+
+#### `/bot-features`
+Display all enhanced bot features and capabilities.
+
+#### `/api-status`
+Show current API endpoint status and health.
+- **Info**: Active endpoints, failure counts, response times
+
+#### `/cleanup-messages`
+Clean up stored message IDs (Admin only).
+
+#### `/list-users`
+List users with stored relic data (Admin only).
+
+## 🔧 Technical Details
+
+### Architecture
+- **Modular Design**: Separate classes for different functionalities
+- **Async/Await**: Full asynchronous operation for optimal performance
+- **Error Handling**: Comprehensive try-catch blocks throughout
+- **Rate Limiting**: Respect for API rate limits and concurrent request management
+
+### Key Components
+1. **WarframeDataManager** - Handles all Warframe API interactions
+2. **SubscriptionManager** - Manages user event subscriptions
+3. **EmbedGenerator** - Creates formatted Discord embeds
+4. **NotificationManager** - Handles user notifications
+5. **ChannelManager** - Manages auto-updating channels
+
+### API Integration
+- **Primary**: Official Warframe Worldstate API
+- **Secondary**: Alternative endpoints for redundancy
+- **Market**: warframe.market API for platinum pricing
+- **Fallback System**: Automatic failover between endpoints
 
 ### Data Storage
-- **Relic Files**: Timestamped text files per user
-- **Encryption**: Fernet encryption for API tokens
-- **Reports**: Detailed comparison reports with platinum analysis
+- **Relics**: Text-based storage for user inventories
+- **Tokens**: Encrypted storage with Fernet encryption
+- **Cache**: JSON-based caching for performance
+- **Messages**: Persistent message ID tracking
 
-## 🔐 Security Features
+## 🚦 Status & Monitoring
 
-### Token Encryption
-- **Algorithm**: Fernet (symmetric encryption)
-- **Key Storage**: Local `token_key.key` file
-- **Auto-generation**: Encryption key generated on first run
-- **Data Protection**: API tokens encrypted at rest
+The bot includes comprehensive monitoring and status reporting:
 
-### Access Control
-- **Channel Restrictions**: Bot only responds in configured channels
-- **Owner Verification**: Users must confirm API token ownership
-- **Admin Commands**: Restricted to users with Administrator permissions
-- **Audit Logging**: All admin actions are logged with reasons
-
-## 📊 Data Sources
-
-### Relic Information
-- **Primary**: [WFCD Warframe Drop Data](https://github.com/WFCD/warframe-drop-data)
-- **Vaulted Status**: [WarframeStats API](https://api.warframestat.us/)
-- **Update Frequency**: Manual admin updates via `/update_relics`
-
-### Platinum Prices
-- **Source**: [Warframe.Market API](https://warframe.market/)
-- **Method**: Average of top 3 online seller prices
-- **Cache**: 1-hour intelligent caching system
-- **Rate Limits**: Respected with delays and concurrent request limits
-
-### Personal Data
-- **Source**: [AlecaFrame Stats](https://stats.alecaframe.com/)
-- **Method**: Binary data parsing from public token API
-- **Storage**: Encrypted tokens, timestamped relic files
-- **Updates**: Automatic 6-hourly refresh
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-**Bot not responding to commands:**
-- Check if the channel ID is in `ALLOWED_CHANNEL_IDS`
-- Verify bot permissions (Send Messages, Use Slash Commands)
-- Confirm the bot is online and properly invited
-
-**API token not saving:**
-- Ensure you clicked "✅ This is MY API key" when prompted
-- Check if the token format is valid (AlecaFrame tokens are long base64 strings)
-- Verify the bot has file write permissions
-
-**Relic data appears corrupted:**
-- This usually indicates binary parsing issues
-- Check AlecaFrame API status
-- Try re-saving your API token
-
-**Price fetching errors:**
-- Check internet connectivity
-- Warframe.Market API may be temporarily down
-- Use `/clear_price_cache` to reset cache if needed
-
-**Auto-updates not working:**
-- Check `/auto_update_status` to verify configuration
-- Ensure your API token is still valid on AlecaFrame
-- Check bot logs for error messages
-
-### Log Files
-The bot outputs detailed logs to console including:
-- API request success/failures
-- Data parsing results
-- User interactions
-- Error conditions
-
-### File Permissions
-Ensure the bot can read/write to:
-- `user_relics/` directory
-- `comparison_reports/` directory
-- `temp_files/` directory
-- Configuration files (JSON, key files)
+- **API Health**: Real-time API endpoint monitoring
+- **Update Loop**: 5-minute update cycle for worldstate data  
+- **Error Logging**: Detailed logging for debugging
+- **Performance**: Concurrent request handling with rate limiting
 
 ## 🤝 Contributing
 
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+### Development Setup
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Add tests if applicable
+5. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+6. Push to the branch (`git push origin feature/AmazingFeature`)
+7. Open a Pull Request
 
-### Development Guidelines
-- Follow PEP 8 style guidelines
-- Add docstrings to new functions
-- Test commands thoroughly before submitting
-- Update documentation for new features
+## 📝 Requirements
 
-## 📝 License
+```txt
+discord.py>=2.3.0
+aiohttp>=3.8.0
+requests>=2.28.0
+python-dotenv>=1.0.0
+cryptography>=41.0.0
+```
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- **Warframe Community**: For continued support and feedback
-- **Digital Extremes**: For creating Warframe
-- **WFCD Team**: For maintaining comprehensive drop data
-- **Warframe.Market**: For providing market price APIs
-- **AlecaFrame**: For relic inventory API access
+- **Warframe Community Developers** - For providing excellent APIs
+- **Discord.py Community** - For the amazing Discord library
+- **warframe.market** - For platinum pricing data
+- **Digital Extremes** - For creating Warframe
 
-## 📧 Support
+## 📞 Support
 
-- **Issues**: Create a GitHub issue for bug reports
-- **Features**: Submit feature requests via GitHub issues
-- **Questions**: Join our Discord support server (link in bio)
+If you encounter any issues or have questions:
+
+1. Check the [Issues](https://github.com/your-username/enhanced-warframe-bot/issues) page
+2. Create a new issue with detailed information
+3. Join our Discord server for community support
+
+## 🔄 Update History
+
+### Latest Version Features:
+- ✅ Enhanced visual design with custom emojis
+- ✅ Discord timestamp integration
+- ✅ Separate fissure embeds by mission type
+- ✅ Advanced notification system with filtering
+- ✅ Multi-API fallback system
+- ✅ Auto-updating channels with message editing
+- ✅ Comprehensive error handling and logging
+- ✅ Modular architecture for easy maintenance
 
 ---
 
-**Disclaimer**: This bot is not affiliated with Digital Extremes or Warframe. It's a community-created tool for player convenience.
+**Built with ❤️ for the Warframe community**
