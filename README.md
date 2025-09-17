@@ -88,9 +88,9 @@ enhanced-warframe-bot/
 ### Environment Variables
 The bot requires the following environment variable:
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DISCORD_TOKEN` | Your Discord bot token | Yes |
+| Variable | Description | 
+|----------|-------------|
+| `DISCORD_TOKEN` | Your Discord bot token |
 
 ### Channel Configuration
 Update the `ALLOWED_CHANNEL_IDS` in the bot code to specify which channels can use certain commands:
@@ -216,7 +216,6 @@ List users with stored relic data (Admin only).
 ## 🔧 Technical Details
 
 ### Architecture
-- **Modular Design**: Separate classes for different functionalities
 - **Async/Await**: Full asynchronous operation for optimal performance
 - **Error Handling**: Comprehensive try-catch blocks throughout
 - **Rate Limiting**: Respect for API rate limits and concurrent request management
@@ -301,8 +300,6 @@ If you encounter any issues or have questions:
 - ✅ Multi-API fallback system
 - ✅ Auto-updating channels with message editing
 - ✅ Comprehensive error handling and logging
-- ✅ Modular architecture for easy maintenance
-
 ---
 
 **Built with ❤️ for the Warframe community**
