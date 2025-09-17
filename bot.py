@@ -1,6 +1,4 @@
-# ENHANCED WARFRAME DISCORD BOT WITH ALL EXISTING FEATURES PRESERVED
-# New Features: Discord timestamps, separate fissure embeds, improved icons
-# All existing features maintained: relic comparison, price checking, auto-updates
+#  WARFRAME DISCORD BOT 
 
 import os
 import re
@@ -3175,3 +3173,4 @@ async def on_message(message):
 
 if __name__ == "__main__":
     bot.run(DISCORD_TOKEN)
+
