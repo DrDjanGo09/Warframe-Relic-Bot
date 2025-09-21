@@ -5,7 +5,6 @@ A comprehensive Discord bot for **Warframe** players featuring real-time worldst
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
 ![Discord.py](https://img.shields.io/badge/discord.py-v2.3+-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
 
 ## ✨ Features
 
@@ -40,6 +39,7 @@ A comprehensive Discord bot for **Warframe** players featuring real-time worldst
 - Python 3.8 or higher
 - Discord Bot Token
 - Warframe.market access (optional, for platinum pricing)
+- AlecaFrame token (for relic comparisons)
 
 ### Installation
 
@@ -86,14 +86,14 @@ enhanced-warframe-bot/
 ## 🛠️ Configuration
 
 ### Environment Variables
-The bot requires the following environment variable:
+The bot requires the following environment variable to placed in .env file:
 
 | Variable | Description | 
 |----------|-------------|
 | `DISCORD_TOKEN` | Your Discord bot token |
 
 ### Channel Configuration
-Update the `ALLOWED_CHANNEL_IDS` in the bot code to specify which channels can use certain commands:
+Update the `ALLOWED_CHANNEL_IDS` in the bot code to specify which channels can used to identify AlecaFrame token. Keep a dedicated channel in which members can post their tokens:
 
 ```python
 ALLOWED_CHANNEL_IDS = [
