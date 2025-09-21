@@ -187,16 +187,16 @@ Manually test all configured auto-update channels.
 
 ### 💎 **Relic Management**
 
-#### `/compare <comparison_type> [user_mention]`
-Compare relic inventories with platinum market values.
-- **Types**: Various comparison algorithms available
+#### `/compare [user1_mention] [user2_mention] [user3_mention] [user4_mention]`
+Main feature of this bot for which it was made.
+Compare relic inventories of players and provide detail of most profitable common relics with platinum market values of contents of relic.
 - **Features**: Platinum pricing, detailed analysis, exportable reports
 
-#### `/my-relics`
+#### `/my_relics`
 View your saved relic profile and statistics.
 
-#### `/upload-relics`
-Upload your relic inventory for comparison and tracking.
+#### `/update_relics`
+Command to update your relics inventory
 
 ### ⚙️ **Admin & Utility**
 
@@ -208,7 +208,7 @@ Show current API endpoint status and health.
 - **Info**: Active endpoints, failure counts, response times
 
 #### `/cleanup-messages`
-Clean up stored message IDs (Admin only).
+Clean up stored message IDs ,for cycles and fissures (Admin only).
 
 #### `/list-users`
 List users with stored relic data (Admin only).
